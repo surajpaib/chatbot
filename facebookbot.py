@@ -1,7 +1,7 @@
 import sys, json, requests
 from flask import Flask, request, render_template
 import botresponse as botResp, random, botinput as botInp
-
+from dialogflow import parse_dialogflow
 
 application = Flask(__name__, instance_relative_config=True, static_url_path='')
 application.config.from_object('config')
@@ -38,6 +38,7 @@ def handle_message():
 					recipient_id = messaging_event["recipient"]["id"]  
 					message_text = messaging_event["message"]["text"]  
 					send_message_response(sender_id, parse_user_message(message_text)) 
+					# Replace parse_user_message with parse_dialogflow for DialogFlow responses
 
 	return "ok"
 
